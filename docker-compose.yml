@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgresql:
+    container_name: fcc-student-db
+    image: postgres:16.1
+    environment:
+      POSTGRES_DB: fcc-student-db
+      POSTGRES_USER: kmb
+      POSTGRES_PASSWORD: Fuckthis22@@@
+    volumes:
+      - /home/ken/Programming/fcc-relational-db/learn-sql-by-building-a-student-database-part-1/local/database:/var/lib/postgresql/data
+      - /home/ken/Programming/fcc-relational-db/learn-sql-by-building-a-student-database-part-1/local/backup:/backup
+      - /home/ken/Programming/fcc-relational-db/learn-sql-by-building-a-student-database-part-1/local/script-and-csv:/script-and-csv
+    ports:
+      - "5433:5432"
+    user: "1000:1000"

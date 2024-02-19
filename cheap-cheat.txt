@@ -1,0 +1,81 @@
+
+docker-compose ps
+
+docker inspect my_postgres_container
+
+
+// Start the db
+docker-compose up -d
+
+//Access psql shell: 
+docker-compose exec postgresql psql -U kmb -d fcc-mario-db
+docker-compose exec postgresql psql -U kmb -d fcc-celestial-bodies-db
+sudo docker-compose exec postgresql psql -U kmb -d fcc-student-db
+
+docker-compose down
+
+// Execute bash shell inside container
+sudo docker-compose exec postgresql bash
+
+
+psql shell commands
+
+List of databases:
+\l 
+
+Connect to database:
+\c
+
+Display command
+\d 
+
+\d table+name
+
+select * from table+name
+
+\set fetch count 100
+
+Current2039
+
+
+
+CREATE DATABASE <data-base-name>
+
+
+sudo docker-compose exec postgresql pg_dump -U kmb -d fcc-celestial-bodies-db > universe.sql
+
+Currently at 466
+
+https://github.com/freeCodeCamp/learn-sql-by-building-a-student-database-part-1/tree/v3.0.0/.freeCodeCamp/reset_files
+
+
+
+
+
+psql -h fcc-student-db -p 5433 -d fcc-student-db -U kmb -c "SELECT * FROM majors;"
+psql -h localhost -p 5433 -d fcc-student-db -U kmb -c "\c students; select * from majors;"
+
+
+pg_dump -h localhost -p 5432 -U kmb -d students --schema-only > /backup/schema_backup.sql
+
+
+
+// Run this inside the bash shell for the postgresql container
+psql -h localhost -p 5432 -U kmb -d students -c "SELECT * FROM majors;"
+
+
+
+// SQL
+SELECT setval('majors_major_id_seq', 1, false);^C
+
+// SQL-- Disable and then enable the sequence to reset its state
+ALTER SEQUENCE majors_major_id_seq RESTART WITH 1;
+
+-- Update the table to reflect the changes
+UPDATE majors SET major_id = nextval('majors_major_id_seq');
+
+
+truncate majors, students, majors_courses; 
+
+
+pg_dump --clean --create --inserts --username=kmb students > students.sql
