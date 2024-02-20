@@ -17,6 +17,9 @@ docker-compose down
 // Execute bash shell inside container
 sudo docker-compose exec postgresql bash
 
+// Create database so you can access container postgreql
+docker-compose exec student_postgresql createdb -U kmb fcc-student-db-2
+
 
 psql shell commands
 
@@ -79,3 +82,13 @@ truncate majors, students, majors_courses;
 
 
 pg_dump --clean --create --inserts --username=kmb students > students.sql
+
+reinstall back up db: 
+psql -U postgres < students.sql
+
+
+rebuild a database back up 
+
+
+check exisiting db
+docker-compose exec student_postgresql psql -U kmb -l
