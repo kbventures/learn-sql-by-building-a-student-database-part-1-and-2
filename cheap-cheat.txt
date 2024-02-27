@@ -92,3 +92,7 @@ rebuild a database back up
 
 check exisiting db
 docker-compose exec student_postgresql psql -U kmb -l
+
+
+
+currenty at 1496 part 2 
